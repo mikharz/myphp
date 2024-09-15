@@ -3,7 +3,6 @@
 namespace App\Interface\Console\Handlers;
 
 use App\Interface\Console\Contracts\IOHandler;
-use App\Interface\Console\ExitCode;
 use App\Interface\Console\Input;
 use App\Interface\Console\Output;
 
@@ -19,6 +18,6 @@ class CommandNotFound implements IOHandler
             $output->write('command not defined');
         }
 
-        $output->setExitCode(ExitCode::Failure);
+        $output->exitFailure();
     }
 }

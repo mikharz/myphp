@@ -4,14 +4,13 @@ namespace App\Interface\Console\Handlers;
 
 use App\Interface\Console\Contracts\Command;
 use App\Interface\Console\Contracts\IOHandler;
-use App\Interface\Console\ExitCode;
 use App\Interface\Console\Input;
 use App\Interface\Console\Output;
 
 class CommandFound implements IOHandler
 {
     public function __construct(
-        protected Command $command
+        public Command $command
     ) {}
 
     public function handle(Input $input, Output $output): void
@@ -23,7 +22,7 @@ class CommandFound implements IOHandler
             $this->command->handle($input, $output);
         } catch (\Throwable $exception) {
             $output->writeError((string) $exception);
-            $output->setExitCode(ExitCode::Invalid);
+            $output->exitInvalid();
         }
     }
 }

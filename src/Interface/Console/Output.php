@@ -16,6 +16,21 @@ class Output
         $this->stderr = $stderr;
     }
 
+    public function exitSuccess(): void
+    {
+        $this->setExitCode(ExitCode::Success);
+    }
+
+    public function exitFailure(): void
+    {
+        $this->setExitCode(ExitCode::Failure);
+    }
+
+    public function exitInvalid(): void
+    {
+        $this->setExitCode(ExitCode::Invalid);
+    }
+
     public function setExitCode(ExitCode $exitCode): void
     {
         $this->exitCode = $exitCode;

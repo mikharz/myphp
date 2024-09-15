@@ -16,7 +16,7 @@ class Usage extends Command
     {
         $stub = $input->getScriptName();
 
-        $output->write("usage: $stub [options] <command> [arguments]");
+        $output->write("usage: $stub [options] <command> [args...]");
 
         $commands = $this->dispatcher->getCommands();
 

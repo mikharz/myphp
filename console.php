@@ -22,4 +22,4 @@ $handler = $dispatcher->dispatch(
 
 $handler->handle($input, $output);
 
-exit($output->getExitCode()->value);
+$output->getExitCode()->apply();

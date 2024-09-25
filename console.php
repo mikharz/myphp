@@ -12,6 +12,7 @@ $output = new Output(STDOUT, STDERR);
 
 $dispatcher = new Dispatcher();
 $dispatcher->addCommand(new Commands\Greeting());
+$dispatcher->addCommand(new Commands\Service());
 $dispatcher->setDefaultCommand(
     new Commands\Usage($dispatcher)
 );

@@ -64,7 +64,7 @@ class Input
         return array_key_exists($name, $this->options);
     }
 
-    public function getOption(string $name): bool|string|null
+    public function getOption(string $name): bool|float|int|string|null
     {
         return $this->options[$name] ?? null;
     }

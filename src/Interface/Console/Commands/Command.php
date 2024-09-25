@@ -2,10 +2,13 @@
 
 namespace App\Interface\Console\Commands;
 
+use App\Interface\Console\Concerns\TrapsSignals;
 use App\Interface\Console\Contracts\Command as CommandInterface;
 
 abstract class Command implements CommandInterface
 {
+    use TrapsSignals;
+
     public function getName(): string
     {
         $reflection = new \ReflectionClass($this);

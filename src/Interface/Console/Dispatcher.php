@@ -44,8 +44,9 @@ class Dispatcher
     /**
      * @return Contracts\IOHandler
      */
-    public function dispatch(?string $commandName = null): Contracts\IOHandler
+    public function dispatch(Input $input): Contracts\IOHandler
     {
+        $commandName = $input->getCommandName();
         $command = $commandName === null ? $this->getDefaultCommand() : $this->getCommand($commandName);
 
         if ($command === null) {

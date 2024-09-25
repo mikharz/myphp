@@ -16,10 +16,7 @@ $dispatcher->setDefaultCommand(
     new Commands\Usage($dispatcher)
 );
 
-$handler = $dispatcher->dispatch(
-    $input->getCommandName()
-);
-
+$handler = $dispatcher->dispatch($input);
 $handler->handle($input, $output);
 
 $output->getExitCode()->apply();

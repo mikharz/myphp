@@ -40,29 +40,35 @@ $commands = $dispatcher->getCommands();
 
 assert(count($commands) === 0);
 
-assert($dispatcher->dispatch('foo') instanceof CommandNotFound);
+$foo = new Input(null, ['file.php', 'foo']);
+
+assert($dispatcher->dispatch($foo) instanceof CommandNotFound);
 
 $dispatcher->addCommand(new MockCommand('foo'));
 
-$handler = $dispatcher->dispatch('foo');
+$handler = $dispatcher->dispatch($foo);
 
 assert($handler instanceof CommandFound);
 assert($handler->command->getName() === 'foo');
 
-assert($dispatcher->dispatch('bar') instanceof CommandNotFound);
+$bar = new Input(null, ['file.php', 'bar']);
+
+assert($dispatcher->dispatch($bar) instanceof CommandNotFound);
 
 $dispatcher->addCommand(new MockCommand('bar'));
 
-$handler = $dispatcher->dispatch('bar');
+$handler = $dispatcher->dispatch($bar);
 
 assert($handler instanceof CommandFound);
 assert($handler->command->getName() === 'bar');
 
-assert($dispatcher->dispatch() instanceof CommandNotFound);
+$noop = new Input(null, []);
+
+assert($dispatcher->dispatch($noop) instanceof CommandNotFound);
 
 $dispatcher->setDefaultCommand(new MockCommand('default'));
 
-$handler = $dispatcher->dispatch();
+$handler = $dispatcher->dispatch($noop);
 
 assert($handler instanceof CommandFound);
 assert($handler->command->getName() === 'default');
